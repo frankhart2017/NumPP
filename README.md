@@ -1,3 +1,3 @@
 # NumPP
 
-## C++ Port for NumPy
+## C++ Port to NumPy
