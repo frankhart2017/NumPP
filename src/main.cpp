@@ -1,6 +1,5 @@
 #include <iostream>
 #include <stdlib.h>
-#include <windows.h>
 
 using namespace std;
 
@@ -60,7 +59,6 @@ int main()
     for(j=3;j>0;j--)
     {
       cout<<"Wait for "<<j<<" seconds";
-      Sleep(1000);
       for(i=0;i<19;i++)
       {
           cout<<"\b";
