@@ -49,10 +49,10 @@ vector<int> mul_ret(vector<int> dimensions) {
   return ret_arr;
 }
 
-vector<int> partitioning(int size, int paritition_size) {
+vector<int> partitioning(int size, int partition_size) {
   vector<int> ret_vec;
   for(int i=0; i<size; i++) {
-    if(i%paritition_size == 0)
+    if(i%partition_size == 0)
       ret_vec.push_back(i);
   }
 
@@ -61,20 +61,20 @@ vector<int> partitioning(int size, int paritition_size) {
 
 int index(int idx, vector<int> row, int prev_dim=0) {
   int ind=0;
-  vector<int> indexing;
+  //vector<int> indexing;
+  int indexing;
   for(int i=0; i<row.size(); i++) {
     if(ind == prev_dim && prev_dim > 0)
       ind = 0;
     if(row[i] > idx) {
-      return indexing[i-1];
+      return indexing;
     }
     if(idx == row[i]) {
       return ind;
     }
-    indexing.push_back(ind);
+    indexing = ind;
     ind++;
   }
-  vector<int>().swap(indexing);
   return ind-1;
 }
 
@@ -119,16 +119,6 @@ int main() {
 
   vector<int>().swap(mul_vector);
 
-  // vector<vector<int> >::const_iterator row;
-  // vector<int>::const_iterator col;
-
-  // for(row = partitions.begin(); row != partitions.end(); row++) {
-  //   for(col = row->begin(); col != row->end(); col++) {
-  //     cout<<*col<<" ";
-  //   }
-  //   cout<<endl;
-  // }
-
   vector<int> true_index;
 
   int mode;
@@ -162,10 +152,8 @@ int main() {
 
     for(int i=0; i<partitions.size(); i++) {
       if(i > 0) {
-        // true_index.push_back(index(idx, partitions[i], dimensions[i]));
         cout<<index(idx, partitions[i], dimensions[i])<<" ";
       } else {
-        // true_index.push_back(index(idx, partitions[i]));
         cout<<index(idx, partitions[i])<<" ";
       }
     }
