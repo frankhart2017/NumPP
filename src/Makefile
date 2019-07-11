@@ -1,4 +1,5 @@
-numpp: array.cpp
-	g++ -std=c++11 -o numpp array.cpp -I
+arr:
 
-	cp numpp /usr/local/bin
+	g++ -std=c++11 -o arr arr.cpp
+
+	./arr
