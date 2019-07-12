@@ -98,13 +98,6 @@ int main() {
   for(int i=0; i<dimensions.size(); i++)
     npp_arr_size *= dimensions[i];
 
-  if(npp_arr_size <= 1000000) {
-    int singleD_arr[npp_arr_size];
-
-    for(int i=0; i<npp_arr_size; i++)
-      singleD_arr[i] = 0;
-  }
-
   vector<int> mul_vector = mul_ret(dimensions);
 
   vector<vector<int> > partitions;
