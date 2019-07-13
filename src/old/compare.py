@@ -3,7 +3,7 @@ import time
 
 start = time.time()
 
-a = np.array([100, 100, 100])
+a = np.array([100,100,100,100,100,100,100,100,100,100,100,100,100])
 
 stop = time.time()
 

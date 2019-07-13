@@ -1,5 +1,10 @@
-arr:
+clean:
 
-	g++ -std=c++11 -o arr arr.cpp
+	make numpp
 
-	./arr
+	rm numpp
+
+numpp:
+	g++ -std=c++11 -o numpp numpp.cpp numpp.hpp test.cpp
+
+	./numpp
