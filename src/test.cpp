@@ -11,9 +11,11 @@ using namespace std::chrono;
 
 int main() {
 
-  numpp<int> np({100,100,100,100,100,100,100,100,100,100,100,100,100});
+  numpp<int> np({2, 2, 3});
 
   np.shape();
+  cout<<endl;
+  np.reshape({3, 4});
 
   cout<<endl;
 }
