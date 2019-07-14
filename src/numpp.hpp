@@ -12,6 +12,7 @@ class numpp {
     vector<T> data;
   public:
     numpp(vector<int>);
+    void shape();
 };
 
 #endif
