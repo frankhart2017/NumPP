@@ -10,11 +10,13 @@ class numpp {
   private:
     vector<int> dim;
     vector<T> data;
-    int ndim;
+    uint64_t ndim;
+    int shape_match(vector<int>);
   public:
     numpp(vector<int>);
     void shape();
     void reshape(vector<int>);
+    void push_vec(vector<int>, vector<T>);
 };
 
 #endif
