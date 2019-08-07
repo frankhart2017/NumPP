@@ -10,7 +10,7 @@ template <class T>
 int numpp<T>::shape_match(vector<int> dim) {
   if(this->dim.size() == dim.size()) {
     for(int i=0; i<this->dim.size(); i++)
-      if(this->dim[i] != dim[i])
+      if(this->dim[i] < dim[i])
         return 0;
     return 1;
   }
@@ -61,8 +61,15 @@ void numpp<T>::reshape(vector<int> new_dim) {
 
 template <class T>
 void numpp<T>::push_vec(vector<int> dim, vector<T> data) {
-  if(shape_match(dim))
-    this->data = data;
+  if(shape_match(dim)) {
+    this->ndim = 1;
+    for(int i=0; i<dim.size(); i++)
+      this->ndim *= dim[i];
+    if(data.size() == this->ndim)
+      this->data = data;
+    else
+      cerr<<"\033[1;31m Error\033[0m: Dimension doesn't match declared numpp dimension!\n";
+  }
   else
-    cerr<<"\033[1;31m Error\033[0m: Dimension doesn't match declared numpp dimension!";
+    cerr<<"\033[1;31m Error\033[0m: Dimension doesn't match declared numpp dimension!\n";
 }
