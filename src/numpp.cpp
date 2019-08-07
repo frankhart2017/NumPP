@@ -69,14 +69,29 @@ void numpp<T>::push_vec(vector<int> dim, vector<T> data) {
 
 
 template <class T>
-void numpp<T>::max() {
+long long int numpp<T>::max() {
   long long int maximum=data[0];
-  int i;
-  for(i=1;i<ndim;i++)
+  long i=1;
+  while(i!=ndim)
   {
     if(data[i]>maximum)
-    maximum=data[i];
+     maximum=data[i++];
   }
-  cout<<maximum<<endl;
+  return maximum;
+
+}
+
+template <class T>
+long long int numpp<T>::min() {
+  long long int minimum=data[0];
+  long i=1;
+  while(i!=ndim)
+  {
+    if(data[i]<minimum)
+     minimum=data[i];
+
+     i++;
+  }
+  return minimum;
 
 }

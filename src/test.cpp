@@ -17,10 +17,11 @@ int main() {
 
   np.push_vec({2, 2}, {1, 2, 3, 4});
   
-  np.max();
+  cout<<np.max()<<endl;
+  cout<<np.min()<<endl;
   auto stop = high_resolution_clock::now();
   auto duration = duration_cast<nanoseconds>(stop - start);
-
+  
   cout<<duration.count()<<endl;
 
   np.shape();

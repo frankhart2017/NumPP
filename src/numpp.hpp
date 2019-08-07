@@ -17,7 +17,8 @@ class numpp {
     void shape();
     void reshape(vector<int>);
     void push_vec(vector<int>, vector<T>);
-    void max();
+    long long int max();
+    long long int min();
 };
 
 #endif
