@@ -95,3 +95,29 @@ long long int numpp<T>::min() {
   return minimum;
 
 }
+
+template <class T>
+void numpp<T>::zeros() {
+ long i=0;
+ while(i!=ndim)
+ {
+   data[i++]=0;
+ }
+}
+
+template <class T>
+void numpp<T>::print() {
+ long i=1;
+ cout<<endl;
+ cout<<"{ "<<data[0];
+ if(ndim==1)
+ cout<<" }";
+ else
+ {
+    while(i!=ndim)
+ {
+   cout<<", "<<data[i++];
+ }
+ cout<<" }";
+ }
+}

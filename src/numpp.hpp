@@ -19,6 +19,8 @@ class numpp {
     void push_vec(vector<int>, vector<T>);
     long long int max();
     long long int min();
+    void zeros();
+    void print();
 };
 
 #endif

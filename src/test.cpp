@@ -27,6 +27,7 @@ int main() {
   np.shape();
   cout<<endl;
   
-  
+  np.zeros();
+  np.print();
   cout<<endl;
 }
