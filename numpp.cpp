@@ -40,21 +40,23 @@ void numpp<T>::shape() {
   cout<<this->dim[this->dim.size() - 1]<<" }";
 
 }
-template <class T>
-void numpp<T>::add(vector<T> data){
-	cout<<endl;
-   for(int i=0;i<this->dim.size()*dim.size();i++)
-   {
-   	cout<<this->data[i]+data[i]<<" ";
-   }
-}
 
 template <class T>
-void numpp<T>::sub(vector<T> data){
+void numpp<T>::add(numpp np1,numpp np2){
 	cout<<endl;
    for(int i=0;i<this->dim.size()*dim.size();i++)
    {
-   	cout<<this->data[i]-data[i]<<" ";
+   	this->data[i]=np1.data[i]+np2.data[i];
+   	cout<<this->data[i]<<" ";
+   }
+}
+template <class T>
+void numpp<T>::sub(numpp np1,numpp np2){
+	cout<<endl;
+   for(int i=0;i<this->dim.size()*dim.size();i++)
+   {
+   	this->data[i]=np1.data[i]-np2.data[i];
+   	cout<<this->data[i]<<" ";
    }
 }
 
