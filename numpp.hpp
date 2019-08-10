@@ -9,16 +9,16 @@ template <class T>
 class numpp {
   private:
     vector<int> dim;
+    vector<T> data;
     int ndim;
     int shape_match(vector<int>);
   public:
     numpp(vector<int>);
-    vector<T> data;
     void shape();
     void reshape(vector<int>);
     void push_vec(vector<int>, vector<T>);
-    void add(vector<T>);
-    void sub(vector<T>);
+    void add(numpp,numpp);
+    void sub(numpp,numpp);
     
 };
 
