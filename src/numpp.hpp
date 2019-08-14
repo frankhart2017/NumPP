@@ -10,6 +10,7 @@ class numpp {
   private:
     vector<int> dim;
     vector<T> data;
+    bool is_zero;
     unsigned long long int ndim;
     int shape_match(vector<int>);
   public:

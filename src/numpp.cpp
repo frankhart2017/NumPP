@@ -22,6 +22,7 @@ template <class T>
 numpp<T>::numpp(vector<int> dim) {
   this->dim = dim;
   this->ndim = 1;
+  is_zero = false;
   for(int i=0; i<this->dim.size(); i++)
     this->ndim *= this->dim[i];
   try {
@@ -98,26 +99,32 @@ long long int numpp<T>::min() {
 
 template <class T>
 void numpp<T>::zeros() {
- long i=0;
- while(i!=ndim)
- {
-   data[i++]=0;
- }
+ is_zero = true;
 }
 
 template <class T>
 void numpp<T>::print() {
  long i=1;
  cout<<endl;
- cout<<"{ "<<data[0];
- if(ndim==1)
- cout<<" }";
- else
- {
-    while(i!=ndim)
- {
-   cout<<", "<<data[i++];
- }
- cout<<" }";
+ if(is_zero) {
+   cout<<"{";
+   i--;
+    while(i != ndim-1) {
+      cout<<"0, ";
+      i++;
+    }
+    cout<<"0}";
+  } else {
+   cout<<"{ "<<data[0];
+   if(ndim==1)
+   cout<<" }";
+   else
+   {
+      while(i!=ndim)
+   {
+     cout<<", "<<data[i++];
+   }
+   cout<<" }";
+   }
  }
 }
