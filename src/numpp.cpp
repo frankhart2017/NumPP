@@ -61,7 +61,7 @@ void numpp<T>::reshape(vector<int> new_dim) {
 }
 
 template <class T>
-long long int numpp<T>::max() {
+uint64_t numpp<T>::max() {
   long long int maximum=data[0];
   long i=1;
   while(i!=ndim)
@@ -74,7 +74,7 @@ long long int numpp<T>::max() {
 }
 
 template <class T>
-long long int numpp<T>::min() {
+uint64_t numpp<T>::min() {
   long long int minimum=data[0];
   long i=1;
   while(i!=ndim)
