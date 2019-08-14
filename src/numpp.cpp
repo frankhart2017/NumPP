@@ -126,7 +126,8 @@ void numpp<T>::print() {
    }
    cout<<" }";
    }
- }
+}
+
 template <class T>
 void numpp<T>::push_vec(vector<int> dim, vector<T> data) {
   if(shape_match(dim)) {
@@ -141,4 +142,3 @@ void numpp<T>::push_vec(vector<int> dim, vector<T> data) {
   else
     cerr<<"\033[1;31m Error\033[0m: Dimension doesn't match declared numpp dimension!\n";
 }
-
