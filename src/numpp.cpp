@@ -22,6 +22,7 @@ template <class T>
 numpp<T>::numpp(vector<int> dim) {
   this->dim = dim;
   this->ndim = 1;
+  is_zero = false;
   for(int i=0; i<this->dim.size(); i++)
     this->ndim *= this->dim[i];
   try {
@@ -61,6 +62,73 @@ void numpp<T>::reshape(vector<int> new_dim) {
 
 template <class T>
 void numpp<T>::push_vec(vector<int> dim, vector<T> data) {
+  if(shape_match(dim))
+    this->data = data;
+  else
+    cerr<<"\033[1;31m Error\033[0m: Dimension doesn't match declared numpp dimension!";
+}
+
+
+template <class T>
+long long int numpp<T>::max() {
+  long long int maximum=data[0];
+  long i=1;
+  while(i!=ndim)
+  {
+    if(data[i]>maximum)
+     maximum=data[i++];
+  }
+  return maximum;
+
+}
+
+template <class T>
+long long int numpp<T>::min() {
+  long long int minimum=data[0];
+  long i=1;
+  while(i!=ndim)
+  {
+    if(data[i]<minimum)
+     minimum=data[i];
+
+     i++;
+  }
+  return minimum;
+
+}
+
+template <class T>
+void numpp<T>::zeros() {
+ is_zero = true;
+}
+
+template <class T>
+void numpp<T>::print() {
+ long i=1;
+ cout<<endl;
+ if(is_zero) {
+   cout<<"{";
+   i--;
+    while(i != ndim-1) {
+      cout<<"0, ";
+      i++;
+    }
+    cout<<"0}";
+  } else {
+   cout<<"{ "<<data[0];
+   if(ndim==1)
+   cout<<" }";
+   else
+   {
+      while(i!=ndim)
+   {
+     cout<<", "<<data[i++];
+   }
+   cout<<" }";
+   }
+ }
+template <class T>
+void numpp<T>::push_vec(vector<int> dim, vector<T> data) {
   if(shape_match(dim)) {
     this->ndim = 1;
     for(int i=0; i<dim.size(); i++)
@@ -73,3 +141,4 @@ void numpp<T>::push_vec(vector<int> dim, vector<T> data) {
   else
     cerr<<"\033[1;31m Error\033[0m: Dimension doesn't match declared numpp dimension!\n";
 }
+
