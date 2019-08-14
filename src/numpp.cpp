@@ -61,15 +61,6 @@ void numpp<T>::reshape(vector<int> new_dim) {
 }
 
 template <class T>
-void numpp<T>::push_vec(vector<int> dim, vector<T> data) {
-  if(shape_match(dim))
-    this->data = data;
-  else
-    cerr<<"\033[1;31m Error\033[0m: Dimension doesn't match declared numpp dimension!";
-}
-
-
-template <class T>
 long long int numpp<T>::max() {
   long long int maximum=data[0];
   long i=1;

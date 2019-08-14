@@ -18,8 +18,8 @@ class numpp {
     void shape();
     void reshape(vector<int>);
     void push_vec(vector<int>, vector<T>);
-    long long int max();
-    long long int min();
+    uint64_t max();
+    uint64_t min();
     void zeros();
     void print();
 };
