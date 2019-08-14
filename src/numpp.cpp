@@ -61,16 +61,7 @@ void numpp<T>::reshape(vector<int> new_dim) {
 }
 
 template <class T>
-void numpp<T>::push_vec(vector<int> dim, vector<T> data) {
-  if(shape_match(dim))
-    this->data = data;
-  else
-    cerr<<"\033[1;31m Error\033[0m: Dimension doesn't match declared numpp dimension!";
-}
-
-
-template <class T>
-long long int numpp<T>::max() {
+uint64_t numpp<T>::max() {
   long long int maximum=data[0];
   long i=1;
   while(i!=ndim)
@@ -83,7 +74,7 @@ long long int numpp<T>::max() {
 }
 
 template <class T>
-long long int numpp<T>::min() {
+uint64_t numpp<T>::min() {
   long long int minimum=data[0];
   long i=1;
   while(i!=ndim)
@@ -126,7 +117,8 @@ void numpp<T>::print() {
    }
    cout<<" }";
    }
- }
+}
+
 template <class T>
 void numpp<T>::push_vec(vector<int> dim, vector<T> data) {
   if(shape_match(dim)) {
@@ -141,4 +133,3 @@ void numpp<T>::push_vec(vector<int> dim, vector<T> data) {
   else
     cerr<<"\033[1;31m Error\033[0m: Dimension doesn't match declared numpp dimension!\n";
 }
-
