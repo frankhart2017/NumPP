@@ -24,6 +24,8 @@ class numpp {
     void print();
     void add(numpp,numpp);
     void sub(numpp,numpp);
+    void search(T, char*);
+    void sort(char*);
 };
 
 #endif
