@@ -10,16 +10,19 @@ class numpp {
   private:
     vector<int> dim;
     vector<T> data;
-    unsigned long long int ndim;
+    bool is_zero;
+    uint64_t ndim;
     int shape_match(vector<int>);
   public:
     numpp(vector<int>);
     void shape();
     void reshape(vector<int>);
     void push_vec(vector<int>, vector<T>);
-    void search(T a,char* );
-    void sort(char* );
-    
+    uint64_t max();
+    uint64_t min();
+    void zeros();
+    void print();
+
 };
 
 #endif

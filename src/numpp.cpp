@@ -8,11 +8,9 @@ using namespace std;
 
 template <class T>
 int numpp<T>::shape_match(vector<int> dim) {
-  
   if(this->dim.size() == dim.size()) {
     for(int i=0; i<this->dim.size(); i++)
-
-      if(this->dim[i] != dim[i])
+      if(this->dim[i] < dim[i])
         return 0;
     return 1;
   }
@@ -24,6 +22,7 @@ template <class T>
 numpp<T>::numpp(vector<int> dim) {
   this->dim = dim;
   this->ndim = 1;
+  is_zero = false;
   for(int i=0; i<this->dim.size(); i++)
     this->ndim *= this->dim[i];
   try {
@@ -62,14 +61,79 @@ void numpp<T>::reshape(vector<int> new_dim) {
 }
 
 template <class T>
-void numpp<T>::push_vec(vector<int> dim, vector<T> data)
- {
-  if(shape_match(dim))
-    this->data = data;
-  else
-    cerr<<"\033[1;31m Error\033[0m: Dimension doesn't match declared numpp dimension!";
+uint64_t numpp<T>::max() {
+  long long int maximum=data[0];
+  long i=1;
+  while(i!=ndim)
+  {
+    if(data[i]>maximum)
+     maximum=data[i++];
+  }
+  return maximum;
+
 }
- 
+
+template <class T>
+uint64_t numpp<T>::min() {
+  long long int minimum=data[0];
+  long i=1;
+  while(i!=ndim)
+  {
+    if(data[i]<minimum)
+     minimum=data[i];
+
+     i++;
+  }
+  return minimum;
+
+}
+
+template <class T>
+void numpp<T>::zeros() {
+ is_zero = true;
+}
+
+template <class T>
+void numpp<T>::print() {
+ long i=1;
+ cout<<endl;
+ if(is_zero) {
+   cout<<"{";
+   i--;
+    while(i != ndim-1) {
+      cout<<"0, ";
+      i++;
+    }
+    cout<<"0}";
+  } else {
+   cout<<"{ "<<data[0];
+   if(ndim==1)
+   cout<<" }";
+   else
+   {
+      while(i!=ndim)
+   {
+     cout<<", "<<data[i++];
+   }
+   cout<<" }";
+   }
+}
+
+template <class T>
+void numpp<T>::push_vec(vector<int> dim, vector<T> data) {
+  if(shape_match(dim)) {
+    this->ndim = 1;
+    for(int i=0; i<dim.size(); i++)
+      this->ndim *= dim[i];
+    if(data.size() == this->ndim)
+      this->data = data;
+    else
+      cerr<<"\033[1;31m Error\033[0m: Dimension doesn't match declared numpp dimension!\n";
+  }
+  else
+    cerr<<"\033[1;31m Error\033[0m: Dimension doesn't match declared numpp dimension!\n";
+}
+
 template <class T>
  void numpp<T>::search(T a, char* ch)
  {
@@ -90,14 +154,14 @@ template <class T>
      }
    }
    else if(ch=="Binary")
-   { 
-       int i, j; 
-    T temp; 
-    for (i = 0; i < ndim-1; i++)  
-    {     
-    for (j = 0; j < ndim-i-1; j++)  
+   {
+       int i, j;
+    T temp;
+    for (i = 0; i < ndim-1; i++)
     {
-        if (data[j] > data[j+1]) 
+    for (j = 0; j < ndim-i-1; j++)
+    {
+        if (data[j] > data[j+1])
         {
           temp=data[j];
           data[j]=data[j+1];
@@ -118,8 +182,8 @@ template <class T>
   }
   else if(a>data[middle])
 start=middle+1;
-else 
-end=middle-1;  
+else
+end=middle-1;
 }
 if(count>0)
 cout<<"Status found ";
@@ -134,14 +198,14 @@ else
  void numpp<T>::sort(char* ch)
  {
    if(ch=="Bubble")
-{  
-    int i, j; 
-    T temp; 
-    for (i = 0; i < ndim-1; i++)  
-    {     
-    for (j = 0; j < ndim-i-1; j++)  
+{
+    int i, j;
+    T temp;
+    for (i = 0; i < ndim-1; i++)
     {
-        if (data[j] > data[j+1]) 
+    for (j = 0; j < ndim-i-1; j++)
+    {
+        if (data[j] > data[j+1])
         {
           temp=data[j];
           data[j]=data[j+1];
@@ -149,48 +213,43 @@ else
         }
     }
     }
-   
+
 }
 else if(ch=="Insertion")
 {
-  int i, j;  
+  int i, j;
   T key;
-    for (i = 1; i < ndim; i++) 
-    {  
-        key = data[i];  
-        j = i - 1;  
-        while (j >= 0 && data[j] > key) 
-        {  
-            data[j + 1] = data[j];  
-            j = j - 1;  
-        }  
-        data[j + 1] = key;  
+    for (i = 1; i < ndim; i++)
+    {
+        key = data[i];
+        j = i - 1;
+        while (j >= 0 && data[j] > key)
+        {
+            data[j + 1] = data[j];
+            j = j - 1;
+        }
+        data[j + 1] = key;
     }
-      
+
 }
 else if(ch=="Selection")
 {
    int i, j, min_idx;
-   T temp;  
-  
-    for (i = 0; i < ndim-1; i++)  
-    {  
-       
-        min_idx = i;  
-        for (j = i+1; j < ndim; j++)  
-        if (data[j] < data[min_idx])  
-            min_idx = j;  
+   T temp;
+
+    for (i = 0; i < ndim-1; i++)
+    {
+
+        min_idx = i;
+        for (j = i+1; j < ndim; j++)
+        if (data[j] < data[min_idx])
+            min_idx = j;
         temp=data[min_idx];
         data[min_idx]=data[i];
         data[i]=temp;
-    }  
+    }
     for(i=0;i<ndim;i++)
     cout<<data[i];
-    
+
 }
  }
-
-           
-
-
-   
