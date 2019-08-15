@@ -13,14 +13,14 @@ int main() {
 
   numpp<int> np({2, 2});
 
-  auto start = high_resolution_clock::now();
-
   np.push_vec({2, 2}, {1, 2, 3, 4});
+  np.print();
 
-  auto stop = high_resolution_clock::now();
-  auto duration = duration_cast<nanoseconds>(stop - start);
+  np.random_normal(2, 6);
+  np.print();
 
-  cout<<duration.count()<<endl;
+  np.random_uniform(2, 6);
+  np.print();
 
   np.shape();
   cout<<endl;

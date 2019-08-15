@@ -1,6 +1,7 @@
 #include <iostream>
 #include <typeinfo>
 #include <map>
+#include <random>
 
 #include "numpp.hpp"
 
@@ -110,13 +111,11 @@ void numpp<T>::print() {
    if(ndim==1)
    cout<<" }";
    else
-   {
       while(i!=ndim)
-   {
-     cout<<", "<<data[i++];
-   }
+        cout<<", "<<data[i++];
    cout<<" }";
    }
+  cout<<endl;
 }
 
 template <class T>
@@ -154,7 +153,7 @@ void numpp<T>::sub(numpp np1,numpp np2){
 }
 
 template <class T>
-void numpp<T>::search(T a, char* ch) {
+void numpp<T>::search(T a, string ch) {
   if(ch == "linear") {
     int count=0;
     for(int i=0; i<ndim; i++)
@@ -198,7 +197,7 @@ void numpp<T>::search(T a, char* ch) {
 }
 
 template <class T>
-void numpp<T>::sort(char* ch) {
+void numpp<T>::sort(string ch) {
   if(ch=="Bubble") {
     int i, j;
     T temp;
@@ -239,4 +238,22 @@ void numpp<T>::sort(char* ch) {
     for(i=0;i<ndim;i++)
       cout<<data[i];
     }
+ }
+
+ template <class T>
+ void numpp<T>::random_normal(double mean, double stddev) {
+   default_random_engine generator;
+   normal_distribution<double> distribution(mean, stddev);
+   this->data.clear();
+   for(int i=0; i<this->ndim; i++)
+     this->data.push_back(distribution(generator));
+ }
+
+ template <class T>
+ void numpp<T>::random_uniform(double mean, double stddev) {
+   default_random_engine generator;
+   uniform_real_distribution<double> distribution(mean, stddev);
+   this->data.clear();
+   for(int i=0; i<this->ndim; i++)
+    this->data.push_back(distribution(generator));
  }
