@@ -135,121 +135,108 @@ void numpp<T>::push_vec(vector<int> dim, vector<T> data) {
 }
 
 template <class T>
- void numpp<T>::search(T a, char* ch)
- {
-   if (ch=="Linear")
- {
-   int count=0;
-   for(int i=0;i<ndim;i++)
+void numpp<T>::add(numpp np1,numpp np2){
+	cout<<endl;
+   for(int i=0;i<this->dim.size()*dim.size();i++)
    {
-     if(a==data[i])
-       count++;
+   	this->data[i]=np1.data[i]+np2.data[i];
+   	cout<<this->data[i]<<" ";
    }
-
-     if(count==0)
-     cout<<"Status not found";
-     else
-     {
-       cout<<"Status found "<<"Occurence "<<count;
-     }
-   }
-   else if(ch=="Binary")
-   {
-       int i, j;
-    T temp;
-    for (i = 0; i < ndim-1; i++)
-    {
-    for (j = 0; j < ndim-i-1; j++)
-    {
-        if (data[j] > data[j+1])
-        {
-          temp=data[j];
-          data[j]=data[j+1];
-          data[j+1]=temp;
-        }
-    }
-    }
-      int count=0;
-     int start, end, middle;
-     start=0;
-     end=ndim-1;
-     for(int i=0;i<ndim;i++)
-{
-  middle=(start+end)/2;
-  if(a==data[middle])
-  {
-  count++;
-  }
-  else if(a>data[middle])
-start=middle+1;
-else
-end=middle-1;
 }
-if(count>0)
-cout<<"Status found ";
-else
-{
-  cout<<"Status Not found";
+template <class T>
+void numpp<T>::sub(numpp np1,numpp np2){
+	cout<<endl;
+   for(int i=0;i<this->dim.size()*dim.size();i++)
+   {
+   	this->data[i]=np1.data[i]-np2.data[i];
+   	cout<<this->data[i]<<" ";
+   }
 }
 
-   }
- }
- template <class T>
- void numpp<T>::sort(char* ch)
- {
-   if(ch=="Bubble")
-{
+template <class T>
+void numpp<T>::search(T a, char* ch) {
+  if(ch == "linear") {
+    int count=0;
+    for(int i=0; i<ndim; i++)
+      if(a == data[i])
+        count++;
+
+    if(count == 0)
+      cout<<a<<" not found!";
+    else
+      cout<<a<<" found!";
+  } else if(ch == "binary") {
     int i, j;
     T temp;
-    for (i = 0; i < ndim-1; i++)
-    {
-    for (j = 0; j < ndim-i-1; j++)
-    {
-        if (data[j] > data[j+1])
-        {
+    for (i = 0; i < ndim-1; i++) {
+      for (j = 0; j < ndim-i-1; j++) {
+        if (data[j] > data[j+1]) {
           temp=data[j];
           data[j]=data[j+1];
           data[j+1]=temp;
         }
+      }
     }
+    int count=0;
+    int start, end, middle;
+    start=0;
+    end=ndim-1;
+    for(int i=0;i<ndim;i++) {
+      middle=(start+end)/2;
+      if(a==data[middle])
+        count++;
+      else if(a>data[middle])
+        start=middle+1;
+      else
+        end=middle-1;
     }
-
+    if(count>0)
+      cout<<a<<" found!";
+    else
+      cout<<a<<" not found!";
+  }
 }
-else if(ch=="Insertion")
-{
-  int i, j;
-  T key;
-    for (i = 1; i < ndim; i++)
-    {
-        key = data[i];
-        j = i - 1;
-        while (j >= 0 && data[j] > key)
-        {
-            data[j + 1] = data[j];
-            j = j - 1;
+
+template <class T>
+void numpp<T>::sort(char* ch) {
+  if(ch=="Bubble") {
+    int i, j;
+    T temp;
+    for (i = 0; i < ndim-1; i++) {
+      for (j = 0; j < ndim-i-1; j++) {
+        if (data[j] > data[j+1]) {
+          temp=data[j];
+          data[j]=data[j+1];
+          data[j+1]=temp;
         }
-        data[j + 1] = key;
+      }
     }
+  } else if(ch=="Insertion") {
+    int i, j;
+    T key;
+    for (i = 1; i < ndim; i++) {
+      key = data[i];
+      j = i - 1;
+      while (j >= 0 && data[j] > key) {
+        data[j + 1] = data[j];
+        j = j - 1;
+      }
+      data[j + 1] = key;
+    }
+  } else if(ch=="Selection") {
+    int i, j, min_idx;
+    T temp;
 
-}
-else if(ch=="Selection")
-{
-   int i, j, min_idx;
-   T temp;
-
-    for (i = 0; i < ndim-1; i++)
-    {
-
-        min_idx = i;
-        for (j = i+1; j < ndim; j++)
-        if (data[j] < data[min_idx])
-            min_idx = j;
-        temp=data[min_idx];
-        data[min_idx]=data[i];
-        data[i]=temp;
+    for (i = 0; i < ndim-1; i++) {
+      min_idx = i;
+      for (j = i+1; j < ndim; j++)
+      if (data[j] < data[min_idx])
+        min_idx = j;
+      temp=data[min_idx];
+      data[min_idx]=data[i];
+      data[i]=temp;
     }
     for(i=0;i<ndim;i++)
-    cout<<data[i];
-
-}
+      cout<<data[i];
+    }
  }
