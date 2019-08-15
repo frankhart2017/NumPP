@@ -22,6 +22,8 @@ class numpp {
     uint64_t min();
     void zeros();
     void print();
+    void add(numpp,numpp);
+    void sub(numpp,numpp);
 };
 
 #endif

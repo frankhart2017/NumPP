@@ -133,3 +133,22 @@ void numpp<T>::push_vec(vector<int> dim, vector<T> data) {
   else
     cerr<<"\033[1;31m Error\033[0m: Dimension doesn't match declared numpp dimension!\n";
 }
+
+template <class T>
+void numpp<T>::add(numpp np1,numpp np2){
+	cout<<endl;
+   for(int i=0;i<this->dim.size()*dim.size();i++)
+   {
+   	this->data[i]=np1.data[i]+np2.data[i];
+   	cout<<this->data[i]<<" ";
+   }
+}
+template <class T>
+void numpp<T>::sub(numpp np1,numpp np2){
+	cout<<endl;
+   for(int i=0;i<this->dim.size()*dim.size();i++)
+   {
+   	this->data[i]=np1.data[i]-np2.data[i];
+   	cout<<this->data[i]<<" ";
+   }
+}
