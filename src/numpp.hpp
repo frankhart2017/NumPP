@@ -24,8 +24,10 @@ class numpp {
     void print();
     void add(numpp,numpp);
     void sub(numpp,numpp);
-    void search(T, char*);
-    void sort(char*);
+    void search(T, string);
+    void sort(string);
+    void random_normal(double, double);
+    void random_uniform(double, double);
 };
 
 #endif
