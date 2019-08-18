@@ -62,7 +62,15 @@ void numpp<T>::reshape(vector<int> new_dim) {
 }
 
 template <class T>
-uint64_t numpp<T>::max() {
+long long int numpp<T>::max() {
+  if(this->data.empty())
+  {
+    cerr<<"\033[1;31m Error\033[0m: Empty array!\n";
+    return 0;
+  }
+  else
+  {
+  
   long long int maximum=data[0];
   long i=1;
   while(i!=ndim)
@@ -71,11 +79,20 @@ uint64_t numpp<T>::max() {
      maximum=data[i++];
   }
   return maximum;
-
+  }
 }
 
 template <class T>
-uint64_t numpp<T>::min() {
+long long int numpp<T>::min() {
+  if(this->data.empty())
+  {
+    cerr<<"\033[1;31m Error\033[0m: Empty array!\n";
+    return 0;
+
+  }
+  else
+  {
+  
   long long int minimum=data[0];
   long i=1;
   while(i!=ndim)
@@ -86,7 +103,7 @@ uint64_t numpp<T>::min() {
      i++;
   }
   return minimum;
-
+  }
 }
 
 template <class T>
